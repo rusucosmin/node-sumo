@@ -13,7 +13,7 @@ The implementation is heavily based on the [node-bebop](https://github.com/hybri
 
 To get started, install the npm module:
 
-    $ npm install git+https://github.com/forgeByAcision/node-sumo
+    $ npm install git+https://github.com/alronz/node-sumo
 
 
 ## How to Use
@@ -51,19 +51,19 @@ Connects to the drone and executes the callback when the drone is ready to drive
 
 #### forward(speed)
 
-Move the drone forward at the specified speed (between 0 and 127).
+Move the drone forward at the specified speed (between 0 and 100).
 
 #### backward(speed)
 
-Move the drone backward at the specified speed (between 0 and 127).
+Move the drone backward at the specified speed (between 0 and 100).
 
 #### right(speed)
 
-Turn the drone right at the specified speed (between 0 and 127).
+Turn the drone right at the specified speed (between 0 and 100).
 
 #### left(speed)
 
-Turn the drone right at the specified speed (between 0 and 127).
+Turn the drone right at the specified speed (between 0 and 100).
 
 #### stop()
 
@@ -130,6 +130,10 @@ Move the drone into the jumper posture. The drone's jump mechanism is used to pr
 #### postureKicker()
 
 Move the drone into the kicker posture. The drone's jump mechanism is used to kick objects behind the drone.
+
+#### takePicture(opts)
+
+Take picture and store it internally
 
 ### Events
 
@@ -212,6 +216,10 @@ Emitted when the jump motor has overheated.
 #### video
 
 Emits single MJPEG video frame
+
+#### internalPicture
+
+Emitted when a photo is taken and stored internally (response to takePicture(opts))
 
 ## Release History
 
