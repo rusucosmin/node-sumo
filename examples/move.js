@@ -8,48 +8,40 @@ var video = drone.getVideoStream();
 var buf = null;
 var w = new cv.NamedWindow("Video", 0);
 
-drone.connect(function() {
-  console.log("Connected...");
+drone.connect(function () {
+    console.log("Connected...");
 
-  drone.postureJumper();
-  drone.forward(50);
-  setTimeout(function() {
-    drone.right(10);
-    setTimeout(function() {
-      drone.stop();
-      drone.animationsLongJump();
-      drone.animationsSlalom();
-    }, 5000);
-  }, 1000);
+    drone.forward(10);
+    drone.videoStreaming();
 });
 
-drone.on("battery", function(battery) {
-  console.log("battery: " + battery);
+drone.on("battery", function (battery) {
+    console.log("battery: " + battery);
 });
 
-video.on("data", function(data) {
-  buf = data;
+video.on("data", function (data) {
+    buf = data;
 });
 
-setInterval(function() {
-  if (buf == null) {
-   return;
-  }
+setInterval(function () {
+    if (buf == null) {
+        return;
+    }
 
-  try {
-    cv.readImage(buf, function(err, im) {
-      if (err) {
-        console.log(err);
-      } else {
-        if (im.width() < 1 || im.height() < 1) {
-          console.log("no width or height");
-          return;
-        }
-        w.show(im);
-        w.blockingWaitKey(0, 50);
-      }
-    });
-  } catch(e) {
-    console.log(e);
-  }
+    try {
+        cv.readImage(buf, function (err, im) {
+            if (err) {
+                console.log(err);
+            } else {
+                if (im.width() < 1 || im.height() < 1) {
+                    console.log("no width or height");
+                    return;
+                }
+                w.show(im);
+                w.blockingWaitKey(0, 50);
+            }
+        });
+    } catch (e) {
+        console.log(e);
+    }
 }, 100);
