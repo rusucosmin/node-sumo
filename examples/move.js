@@ -10,7 +10,6 @@ var w = new cv.NamedWindow("Video", 0);
 
 drone.connect(function () {
     console.log("Connected...");
-
     drone.forward(10);
     drone.videoStreaming();
 });
@@ -20,6 +19,7 @@ drone.on("battery", function (battery) {
 });
 
 video.on("data", function (data) {
+    console.log("new data");
     buf = data;
 });
 
@@ -28,6 +28,7 @@ setInterval(function () {
         return;
     }
 
+    console.log("set interval");
     try {
         cv.readImage(buf, function (err, im) {
             if (err) {
