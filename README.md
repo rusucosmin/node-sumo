@@ -227,4 +227,4 @@ Emitted when a photo is taken and stored internally (response to takePicture(opt
 
 ## License
 
-Copyright (c) 2015 Acision. Licensed under the MIT license.
+Copyright (c) 2017 Cosmin Rusu. Licensed under the MIT license.
